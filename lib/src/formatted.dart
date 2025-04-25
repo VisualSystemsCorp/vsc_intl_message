@@ -1,4 +1,4 @@
-part of '../intl_message.dart';
+part of '../vsc_intl_message.dart';
 
 FutureOr<String> _toString(dynamic v) {
   if (v is Future) return v.then(_toString);
@@ -106,7 +106,7 @@ class NumberMessage extends ExpressionSubstitution {
 
   @override
   String formatter(v, Map<String, dynamic> args) =>
-      v == null ? '' : _numberFormat.format(_toNum(v));
+      v == null ? '-' : _numberFormat.format(_toNum(v));
 
   @override
   String toString() => '{$name, number, $numberFormat}';
@@ -154,7 +154,7 @@ class DateTimeMessage extends ExpressionSubstitution {
 
   @override
   String formatter(v, Map<String, dynamic> args) => v == null
-      ? ''
+      ? '-'
       : DateFormat(_formats[dateTimeFormat] ?? dateTimeFormat)
           .format(_toDateTime(v));
 

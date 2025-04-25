@@ -1,4 +1,4 @@
-part of '../intl_message.dart';
+part of '../vsc_intl_message.dart';
 
 typedef ErrorHandler = String Function(IntlMessage, Object);
 

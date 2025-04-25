@@ -1,7 +1,7 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:test/test.dart';
-import 'package:vsc_intl_message/intl_message.dart';
+import 'package:vsc_intl_message/vsc_intl_message.dart';
 
 void main() async {
   await initializeDateFormatting('nl', null);
@@ -29,7 +29,7 @@ void main() async {
       expect(
           IntlMessage('Number:{value, number, integer}<')
               .format({'value': null}),
-          'Number:<');
+          'Number:-<');
     });
 
     test('Date format', () {
@@ -56,7 +56,7 @@ void main() async {
         expect(IntlMessage('Sale begins {start, date, full}').format(args),
             'Sale begins Friday, November 3, 2017');
         expect(IntlMessage('Date:{start, date, full}<').format({'start': null}),
-            'Date:<');
+            'Date:-<');
       });
     });
 
@@ -72,7 +72,7 @@ void main() async {
       expect(
           IntlMessage('Time:{expires, time, medium}<')
               .format({'expires': null}),
-          'Time:<');
+          'Time:-<');
     });
 
     test('Custom format', () {
@@ -87,7 +87,7 @@ void main() async {
         expect(
             IntlMessage('Number:{total, number, currency}<')
                 .format({'total': null}),
-            r'Number:<');
+            r'Number:-<');
         expect(
             IntlMessage('Your total is {total, number, ¤#,##0.00}')
                 .format({'total': 99}),

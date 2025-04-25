@@ -1,4 +1,4 @@
-part of '../intl_message.dart';
+part of '../vsc_intl_message.dart';
 
 abstract class SubMessage extends ExpressionSubstitution {
   final Map<String, IntlMessage> messages;

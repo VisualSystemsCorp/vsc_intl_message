@@ -2,8 +2,8 @@ library intl_message.parser;
 
 import 'package:expressions/expressions.dart';
 import 'package:expressions/src/parser.dart';
-import 'package:vsc_intl_message/intl_message.dart';
 import 'package:petitparser/petitparser.dart';
+import 'package:vsc_intl_message/vsc_intl_message.dart';
 
 class IcuParser {
   Parser<String> get openCurly => char('{');
