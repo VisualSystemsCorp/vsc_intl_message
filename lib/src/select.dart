@@ -77,7 +77,7 @@ class PluralMessage extends SubMessage {
   FutureOr<String> _replace(FutureOr<String> s, v) {
     if (s is String) {
       return s.replaceAllMapped(RegExp(r'(^|[^\\])#'),
-          (m) => m.group(1)! + NumberFormat().format(v - offset));
+          (m) => m.group(1)! + NumberFormat().format((v ?? 0) - offset));
     }
     return s.then((s) => _replace(s, v));
   }
@@ -93,6 +93,8 @@ class PluralMessage extends SubMessage {
 
   @override
   String _index(v) {
+    if (v == null) return 'other';
+
     if (v is! int) {
       throw ArgumentError(
           'Expected argument $name to be of type int, was ${v.runtimeType} ($v)');

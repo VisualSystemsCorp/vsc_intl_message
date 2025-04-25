@@ -106,7 +106,7 @@ class NumberMessage extends ExpressionSubstitution {
 
   @override
   String formatter(v, Map<String, dynamic> args) =>
-      _numberFormat.format(_toNum(v));
+      v == null ? '' : _numberFormat.format(_toNum(v));
 
   @override
   String toString() => '{$name, number, $numberFormat}';
@@ -153,8 +153,9 @@ class DateTimeMessage extends ExpressionSubstitution {
   }
 
   @override
-  String formatter(v, Map<String, dynamic> args) =>
-      DateFormat(_formats[dateTimeFormat] ?? dateTimeFormat)
+  String formatter(v, Map<String, dynamic> args) => v == null
+      ? ''
+      : DateFormat(_formats[dateTimeFormat] ?? dateTimeFormat)
           .format(_toDateTime(v));
 
   @override

@@ -1,8 +1,5 @@
-[:heart: sponsor](https://github.com/sponsors/rbellens)
+# vsc_intl_message
 
-# intl_message
-
-[![Build Status](https://travis-ci.org/appsup-dart/intl_message.svg?branch=master)](https://travis-ci.org/appsup-dart/expressions)
 
 Parses and formats [ICU Message strings](http://userguide.icu-project.org/formatparse/messages).
 
@@ -35,11 +32,8 @@ Parses and formats [ICU Message strings](http://userguide.icu-project.org/format
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/appsup-dart/intl_message/issues
+[tracker]: https://github.com/VisualSystemsCorp/vsc_intl_message/issues
 
 ## Sponsor
 
-Creating and maintaining this package takes a lot of time. If you like the result, please consider to [:heart: sponsor](https://github.com/sponsors/rbellens). 
-With your support, I will be able to further improve and support this project.
-Also, check out my other dart packages at [pub.dev](https://pub.dev/packages?q=publisher%3Aappsup.be).
-
+Forked from https://github.com/appsup-dart/intl_message on 2025-04-25 commit 68f2e5c1214e27d48d1013173989101a6c47daaf.

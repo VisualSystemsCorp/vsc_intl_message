@@ -1,7 +1,7 @@
-import 'package:intl_message/intl_message.dart';
-import 'package:test/test.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+import 'package:test/test.dart';
+import 'package:vsc_intl_message/intl_message.dart';
 
 void main() async {
   await initializeDateFormatting('nl', null);
@@ -25,6 +25,11 @@ void main() async {
           'Almost 40% of them are black.');
       expect(
           IntlMessage('{value, number, integer}').format({'value': 5.5}), '6');
+
+      expect(
+          IntlMessage('Number:{value, number, integer}<')
+              .format({'value': null}),
+          'Number:<');
     });
 
     test('Date format', () {
@@ -50,6 +55,8 @@ void main() async {
             'Sale begins November 3, 2017');
         expect(IntlMessage('Sale begins {start, date, full}').format(args),
             'Sale begins Friday, November 3, 2017');
+        expect(IntlMessage('Date:{start, date, full}<').format({'start': null}),
+            'Date:<');
       });
     });
 
@@ -62,6 +69,10 @@ void main() async {
       expect(
           IntlMessage('Coupon expires at {expires, time, medium}').format(args),
           'Coupon expires at 2:30:00 PM');
+      expect(
+          IntlMessage('Time:{expires, time, medium}<')
+              .format({'expires': null}),
+          'Time:<');
     });
 
     test('Custom format', () {
@@ -73,6 +84,10 @@ void main() async {
             IntlMessage('Your total is {total, number, currency}')
                 .format({'total': 99}),
             r'Your total is $99.00');
+        expect(
+            IntlMessage('Number:{total, number, currency}<')
+                .format({'total': null}),
+            r'Number:<');
         expect(
             IntlMessage('Your total is {total, number, ¤#,##0.00}')
                 .format({'total': 99}),
@@ -105,6 +120,7 @@ void main() async {
       expect(m.format({'gender': 'male'}), 'He will respond shortly.');
       expect(m.format({'gender': 'female'}), 'She will respond shortly.');
       expect(m.format({'gender': 'x'}), 'They will respond shortly.');
+      expect(m.format({'gender': null}), 'They will respond shortly.');
     });
 
     test('Nested select', () {
@@ -116,6 +132,8 @@ void main() async {
           'An additional 30% tax will be collected.');
       expect(
           m.format({'taxableArea': 'no', 'taxRate': 0.3}), 'No taxes apply.');
+      expect(
+          m.format({'taxableArea': null, 'taxRate': 0.3}), 'No taxes apply.');
     });
 
     test('Plural', () {
@@ -139,6 +157,7 @@ void main() async {
       expect(m.format({'itemCount': 1}), 'You have 1 item.');
       expect(m.format({'itemCount': 2}), 'You have 2 items.');
       expect(m.format({'itemCount': 0}), 'You have no items.');
+      expect(m.format({'itemCount': null}), 'You have 0 items.');
     });
 
     test('Selectordinal', () {
@@ -155,6 +174,7 @@ void main() async {
       expect(m.format({'year': 2}), "It's my cat's 2nd birthday!");
       expect(m.format({'year': 3}), "It's my cat's 3rd birthday!");
       expect(m.format({'year': 4}), "It's my cat's 4th birthday!");
+      expect(m.format({'year': null}), "It's my cat's 0th birthday!");
     });
   });
 
@@ -725,17 +745,13 @@ void main() async {
     test('NumberMessage should throw when not a number or parseable', () {
       expect(() => IntlMessage('{N, number, integer}').format({'N': 'qdf'}),
           throwsA(isA<FormatException>()));
-      expect(() => IntlMessage('{N, number, integer}').format({'N': null}),
-          throwsA(isA<ArgumentError>()));
       expect(() => IntlMessage('{N, number, integer}').format({'N': true}),
           throwsA(isA<TypeError>()));
     });
     test('DateTimeMessage should throw when not a DateTime or parseable', () {
-      expect(() => IntlMessage('{N, number, integer}').format({'N': 'qdf'}),
+      expect(() => IntlMessage('{N, date, integer}').format({'N': 'qdf'}),
           throwsA(isA<FormatException>()));
-      expect(() => IntlMessage('{N, number, integer}').format({'N': null}),
-          throwsA(isA<ArgumentError>()));
-      expect(() => IntlMessage('{N, number, integer}').format({'N': true}),
+      expect(() => IntlMessage('{N, date, integer}').format({'N': true}),
           throwsA(isA<TypeError>()));
     });
   });

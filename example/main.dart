@@ -1,5 +1,5 @@
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl_message/intl_message.dart';
+import 'package:vsc_intl_message/intl_message.dart';
 
 void main() {
   initializeDateFormatting();
